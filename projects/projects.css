@@ -1,0 +1,371 @@
+:root {
+    --text-color: #1a1c20;
+    --link-color: #5f1cb6;
+    --background-color: #eeeff1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Karla', sans-serif;
+    background-color: var(--background-color);
+    max-width: 1400px;
+    margin: 0 auto; 
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+/* NAVBAR */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    height: 80px;
+}
+
+nav .left a {
+    color: var(--text-color);
+    font-size: 22px;
+    font-weight: 600;
+}
+
+nav .right a {
+    color: var(--text-color);
+    margin: 0 10px;
+}
+
+nav .right a span {
+    margin-left: 5px; 
+}
+
+/* INTRODUCTION */
+
+.intro-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 50px;
+    margin: 50px 0;
+    margin-bottom: 50px;
+    gap: 40px;
+    background-color: black;
+}
+
+.intro-section .text {
+    color: var(--background-color);
+    flex: 5;
+}
+
+.intro-section .text h2 {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.intro-section .text p {
+    margin-bottom: 10px;
+}
+
+.intro-section .text .links { 
+    margin-top: 25px;
+}
+
+.intro-section .text .links a {
+    display: inline-block;
+    padding: 5px 10px;
+    color: var(--background-color);
+    border: 2px solid var(--background-color);
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: 0.1s;
+}
+
+.intro-section .text .links a:hover {
+    color: rgb(188, 138, 221);
+    border: 2px solid rgb(188, 138, 221);
+}
+
+.intro-section .headshot {
+    flex: 2;
+    display: flex;
+    justify-content: right;
+}
+
+.intro-section .headshot img {
+    width: 400px;
+    height: auto;
+    filter: saturate(0.7);
+}
+
+/* TOOLS */
+
+.tools-section {
+    padding: 0 50px;
+    margin-bottom: 100px;
+}
+
+.tools-section h2 {
+    font-size: 35px;
+    text-align: center;
+}
+
+.tools-section .tab-wrap {
+    transition: 0.3s ease;
+    border-radius: 5px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: relative;
+    list-style: none;
+    background-color: var(--background-color);
+    margin: 40px 0px;
+}
+
+.tools-section .tab-wrap input {
+    display: none;
+}
+
+.tools-section .tab-wrap label {
+    border: 1px solid #d3d3d3;
+    cursor: pointer;
+    display: flex;
+    justify-content: left;
+    font-size: 24px;
+    transition: 0.3s background-color ease;
+    padding: 20px;
+    margin: -0.5px 0px;
+    &:hover {
+        background-color: #f9f9f9;
+    }
+}
+
+.tools-section .tab-wrap img {
+    height: 30px;
+}
+
+.tools-section .tab-wrap h4 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.tools-section .tab-wrap ul {
+    margin-bottom: 5px;
+}
+
+.tools-section .tab-wrap .tab__content {
+    opacity: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    left: 69px;
+    height: 100%;
+    width: 95%;
+    padding: 40px 50px;
+}
+
+.tools-section .tab-wrap .tab:first-of-type:checked ~ .tab__content:first-of-type,
+.tools-section .tab-wrap .tab:first-of-type:checked + label:first-of-type{
+    opacity: 1;
+    background-color: #ccc2db;
+}
+
+.tools-section .tab-wrap .tab:nth-of-type(2):checked ~ .tab__content:nth-of-type(2),
+.tools-section .tab-wrap .tab:nth-of-type(2):checked + label:nth-of-type(2){
+    opacity: 1;
+    background-color: #ccc2db;
+}
+
+.tools-section .tab-wrap .tab:last-of-type:checked ~ .tab__content:last-of-type,
+.tools-section .tab-wrap .tab:last-of-type:checked + label:last-of-type{
+    opacity: 1;
+    background-color: #ccc2db;
+}
+
+/* Result */
+
+.result-section {
+    padding: 50px 50px;
+    margin-bottom: 100px;
+}
+
+.result-section h2 {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.result-section .images {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.result-section .images img{
+    width: 100%;
+}
+
+.result-section .images .data {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.result-section .images .data img {
+    height: 100%;
+    width: auto;
+    flex: 1;
+}
+
+.result-section .images .data p {
+    flex: 7;
+}
+
+.result-section .images .comparison {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.result-section .images .comparison img {
+    height: 50%;
+    width: auto;
+}
+
+/* CODE */
+
+.code-section {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 50px;
+    padding: 50px 50px;
+    padding-bottom: 100px;
+    background-color: black;
+}
+
+.code-section .text {
+    flex: 4;
+    color: var(--background-color);
+    position: relative;
+}
+
+.code-section .text h2 {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.code-section .text code {
+    padding: 15px 10px;
+    position: absolute;
+    color: white;
+    border: 2px solid white;
+    width: 100%;
+    overflow: hidden;
+}
+
+.code-section .text code::after {
+    content: "View on Github";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+    padding: 10% 0%;
+    color: var(--text-color);
+    font-family: 'Karla', sans-serif;
+    font-size: 24px;
+    background-color: rgba(255, 255, 255, 0.95);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.code-section .text code:hover::after {
+    opacity: 1;
+  }
+
+
+.code-section .headshot {
+    flex: 2;
+    display: flex;
+    justify-content: left;
+}
+
+.code-section .headshot img {
+    width: 100%;
+    height: auto;
+    filter: saturate(0.7);
+}
+
+@media (max-width: 800px) {
+    /* INTRODUCTION */
+    .intro-section {
+        flex-direction: column-reverse;
+    }
+
+    .intro-section .headshot img {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+    /* NAVBAR */
+    nav {
+      padding: 0 20px;
+    }
+  
+    nav .right a {
+      font-size: 22px;
+    }
+  
+    nav .right a:last-child {
+      color: var(--text-color);
+      background-color: transparent;
+      padding: 0;
+    }
+  
+    nav .right a span {
+      display: none;
+    }
+
+    /* INTRODUCTION */
+    .intro-section {
+        padding: 20px 20px;
+    }
+
+    .intro-section .text h2 {
+        font-size: 30px;
+    }
+
+    /* TOOLS */
+    .tools-section {
+        padding: 0 20px;
+    }
+
+    /* RESULT */
+    .result-section {
+        padding: 0 20px;
+    }
+
+    /* CODE */
+    .code-section {
+        padding: 20px 20px;
+    }
+}

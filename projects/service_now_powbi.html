@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12+Charted&family=Karla&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="projects.css">
+
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+    <title>Service Now Project</title>
+</head>
+
+<body>
+    <!-- NAV BAR -->
+    <nav>
+        <div class="left">
+            <a href="/">Madeline Legate</a>
+        </div>
+        <div class="right">
+            <a href="http://github.com/mmlegate" target="_blank" rel="noopener no-referrer">
+                <i class="fa-brands fa-square-github"></i>
+                <span>Github</span>
+            </a>
+
+            <a href="http://linkedin.com/in/madeline-legate-8405801a6/" target="_blank" rel="noopener no-referrer">
+                <i class="fa-brands fa-linkedin"></i>
+                <span>Linkedin</span>
+            </a>
+
+            <a href="mailto:legate.madeline@gmail.com" >
+                <i class="fa-solid fa-square-envelope"></i>
+                <span>Email</span>
+            </a>
+        </div>
+    </nav>
+
+    <section class="intro-section">
+        <div class="text"> <h2> Service Now to Power BI Data Analysis</h2>
+            <p>Essentially this project leverages the Python integration within Power BI to perform an API call to Service Now. The result is a data visualization board of key insights from the data pulled from Service Now.</p>
+            <p> The data in question pertained to the instance of Service Now from my previous job as a Web Tools Consultant for UW Academic Technologies. For this website, I have used dummy data to avoid any UW  data concerns.</p>
+            <div class="links">
+                <a href="#tools">
+                    <i class="fa-solid fa-tools"></i>
+                    <span>Tools</span>
+                </a>
+
+                <a href="#result">
+                    <i class="fa-solid fa-gift"></i>
+                    <span>Result</span>
+                </a>
+
+                <a href="#code">
+                    <i class="fa-solid fa-code"></i>
+                    <span>Code</span>
+                </a>
+            </div>
+        </div> 
+        <div class="headshot">
+            <img src="/../images/torus_variations1.webp">
+        </div>
+    </section>
+
+    <!-- TOOLS -->
+    <section id="tools" class="tools-section"> <h2>Tools</h2>
+        <div class="tab-wrap">
+
+            <!-- active tab on page load gets checked attribute -->
+            <input type="radio" id="tab1" name="tabGroup1" class="tab" checked>
+            <label for="tab1"><img src="/../images/servicenow_logo.webp" alt="Service Now logo"></label>
+        
+            <input type="radio" id="tab2" name="tabGroup1" class="tab">
+            <label for="tab2"><img src="/../images/python_logo.webp" alt="Python logo"></label>
+        
+            <input type="radio" id="tab3" name="tabGroup1" class="tab">
+            <label for="tab3"><img src="/../images/powerbi_logo.webp" alt="Power BI logo"></label>
+        
+            <div class="tab__content">
+                <h4>Service Now</h4>
+                <ul>
+                    <li>Beep Boop</li>
+                    <li>Beep beep boop</li>
+                    <li>Meep Mooop</li>
+                </ul>
+            </div>
+        
+            <div class="tab__content">
+                <h4>Python</h4>
+                <ul>
+                    <li>Beep Boop</li>
+                    <li>Beep beep boop</li>
+                    <li>Meep Mooop</li>
+                </ul>
+            </div>
+        
+            <div class="tab__content">
+                <h4>Power BI</h4>
+                <ul>
+                    <li>Beep Boop</li>
+                    <li>Beep beep boop</li>
+                    <li>Meep Mooop</li>
+                </ul>
+            </div>
+        
+          </div>
+    </section>
+
+    <!-- RESULT -->
+    <section id="result" class="result-section"> <h2>Result</h2>
+        <div class="images">
+            <img src="/../images/task_example.webp" alt="Data visualization from Service Now API call">
+        </div>
+    </section>
+
+    <!-- CODE -->
+    <section id="code" class="code-section">
+        <div class="text"> <h2> Source Code:</h2>
+            <a href="https://github.com/mmlegate/mmlegate.github.io/tree/main/projects"><pre><code class="python">#Change netID for person you are doing the search for
+netid = 'mlegat' 
+api_url = 'https://uw.service-now.com/api/now/table/task' # Link to API tab
+query_params = {
+    'sysparm_query': '123TEXTQUERY321='+ netid +'^numberNOT LIKEREF',      
+    'sysparm_display_value': 'false',                                      
+    'sysparm_exclude_reference_link': 'true',                              
+    'sysparm_fields': 'number, sys_updated_on, sys_class_name, cmdb_ci',</code></pre></a>
+
+        </div> 
+        <div class="headshot">
+            <img src="/../images/torus background.webp">
+        </div>
+    </section>
+
+</body>

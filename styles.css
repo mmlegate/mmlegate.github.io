@@ -1,0 +1,465 @@
+:root {
+    --text-color: #1a1c20;
+    --link-color: #ccc2db;
+    --background-color: #eeeff1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Karla', sans-serif;
+    background-color: var(--background-color);
+    max-width: 1400px;
+    margin: 0 auto; 
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+/* NAVBAR */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    height: 80px;
+    margin-bottom: 50px;
+}
+
+nav .left a {
+    color: var(--text-color);
+    font-size: 22px;
+    font-weight: 600;
+}
+
+nav .right a {
+    color: var(--text-color);
+    margin: 0 10px;
+}
+
+nav .right a span {
+    margin-left: 5px; 
+}
+
+/* INTRODUCTION */
+
+.intro-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 50px;
+    margin-bottom: 100px;
+    gap: 40px;
+
+}
+
+.intro-section .text {
+    flex: 5;
+}
+
+.intro-section .text h2 {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.intro-section .text p {
+    margin-bottom: 10px;
+}
+
+.intro-section .text .links {
+    margin-top: 25px;
+}
+
+.intro-section .text .links a {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #8a8394;
+    border: 2px solid #8a8394;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: 0.1s;
+}
+
+.intro-section .text .links a:hover {
+    color: var(--text-color);
+    border: 2px solid var(--text-color);
+}
+
+.intro-section .headshot {
+    flex: 2;
+    display: flex;
+    justify-content: right;
+}
+
+.intro-section .headshot img {
+    object-fit: cover;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%
+}
+
+/* SKILLS */
+.skills-section {
+    padding: 0 50px;
+    margin-bottom: 400px;
+}
+
+.skills-section h2 {
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.skills-section .text p {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.skills-section .text .education {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.skills-section .text .education p {
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.skills-section .text .education ul {
+    padding: 10px 10px;
+    margin-bottom: 5px;
+    list-style: '-';
+}
+
+.skills-section .text .education li {
+    padding: 3px 10px;
+}
+
+.skills-section .cells {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.skills-section .cells .cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    width: 140px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: 1.5px solid #d3d3d3;
+    border-radius: 5px;
+
+}
+
+.skills-section .cells .cell img {
+    width: auto;
+    height: 40px;
+    object-fit: fill;
+    border-radius: 2px;
+}
+
+.skills-section .cells .cell .thing {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+}
+
+.skills-section .cells .cell .thing .time {
+    font-size: 14px;
+    color: #8a8394;
+    margin-top: 3px;
+}
+
+.skills-section .tab-wrap {
+    transition: 0.3s ease;
+    border-radius: 5px;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    list-style: none;
+    background-color: var(--background-color);
+    margin: 40px 0;
+    margin-top: 100px;
+}
+
+.skills-section .tab-wrap input {
+    display: none;
+}
+
+.skills-section .tab-wrap label {
+    border: 1px solid #d3d3d3;
+    cursor: pointer;
+    display: block;
+    flex-grow: 3;
+    justify-content: space-between;
+    margin: 0 -0.5px;
+    text-align: center;
+    transition: 0.3s background-color ease;
+    height: 50px;
+    padding: 15px;
+    &:hover {
+        background-color: #f9f9f9;
+    }
+}
+
+.skills-section .tab-wrap p {
+    margin-bottom: 5px;
+}
+
+.skills-section .tab-wrap .tab__content {
+    opacity: 0;
+    position: absolute;
+    top: 47px;
+    padding: 20px 20px;
+}
+
+.skills-section .tab-wrap .tab__content h3 {
+    font-size: 24px;
+}
+
+.skills-section .tab-wrap .tab__content h4 {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.skills-section .tab-wrap .tab__content .job {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 18px;
+    margin-bottom: 5px;
+    padding: 10px 0px;
+}
+
+.skills-section .tab-wrap .tab:first-of-type:checked ~ .tab__content:first-of-type,
+.skills-section .tab-wrap .tab:first-of-type:checked + label:first-of-type{
+    opacity: 1;
+    background-color: #ccc2db;
+}
+
+.skills-section .tab-wrap .tab:nth-of-type(2):checked ~ .tab__content:nth-of-type(2),
+.skills-section .tab-wrap .tab:nth-of-type(2):checked + label:nth-of-type(2){
+    opacity: 1;
+    background-color: #ccc2db;
+}
+
+.skills-section .tab-wrap .tab:last-of-type:checked ~ .tab__content:last-of-type,
+.skills-section .tab-wrap .tab:last-of-type:checked + label:last-of-type{
+    opacity: 1;
+    background-color: #ccc2db;
+}
+
+/* WORK */
+.work-section {
+    padding: 0 50px;
+    margin-bottom: 100px;
+    margin-top: 320px;
+    background-color: black;
+}
+
+.work-section h2 {
+    color: var(--background-color);
+    font-size: 35px;
+    padding: 20px 0;
+    margin-bottom: 50px;
+}
+
+.work-section .projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.work-section .projects .project {
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.work-section .projects .project img {
+    display: block;
+    width: 400px;
+    height: auto;
+    filter: grayscale(1);
+    border: 2px solid black;
+    transition: 0.5s ease;
+}
+
+.work-section .projects .project .overlay {
+    position: absolute;
+    bottom: 40% ;
+    background: rgba(0, 0, 0, 0.5); /* Black see-through */
+    width: 400px;
+    opacity:1;
+    color: white;
+    font-size: 24px;
+    padding: 20px;
+    text-align: center;
+}
+
+.work-section .projects .project:hover img {
+    filter: grayscale(0.3)
+}
+
+
+/* CONTACT */
+.contact-section {
+    padding: 0 50px;
+    margin-bottom: 100px;
+}
+
+.contact-section h2 {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.contact-section p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.contact-section .group {
+    display: flex;
+    gap: 50px;
+}
+
+.contact-section .group .text {
+    flex: 3;
+}
+
+.contact-section .group form {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-section .group form input,
+.contact-section .group form textarea {
+    font-family: 'Karla', sans-serif;
+    border: 2px solid #ccc2db;
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 10px;
+    margin-bottom: 15px;
+    outline: none;
+    resize: none;
+}
+
+.contact-section .group form button {
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    background-color: #ccc2db;
+    border: none;
+    border-radius: 5px;
+    height: 50px;
+    cursor: pointer;
+    
+}
+
+.contact-section .group form button:hover {
+    filter: brightness(.9);
+    transition: 0.1s;
+}
+
+@media (max-width: 900px) {
+    /* INTRODUCTION */
+    .intro-section .text h2 {
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 800px) {
+    /* INTRODUCTION */
+    .intro-section {
+        flex-direction: column-reverse;
+    }
+
+    .intro-section .headshot img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .work-section .projects {
+        flex-direction: column;
+    }
+
+    /* CONTACT */
+    .contact-section .group {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    /* NAVBAR */
+    nav {
+      padding: 0 20px;
+    }
+  
+    nav .right a {
+      font-size: 22px;
+    }
+  
+    nav .right a:last-child {
+      color: var(--text-color);
+      background-color: transparent;
+      padding: 0;
+    }
+  
+    nav .right a span {
+      display: none;
+    }
+
+    /* INTRODUCTION */
+    .intro-section {
+        padding: 0 20px;
+    }
+
+    .intro-section .text h2 {
+        font-size: 30px;
+    }
+
+    /* SKILLS */
+    .skills-section {
+        padding: 0 20px;
+    }
+
+    .skills-section .cells .cell span {
+        font-size: 16px;
+    }
+
+    /* WORK */
+    .work-section {
+        padding: 0 20px;
+    }
+
+    /* CONTACT */
+    .contact-section {
+        padding: 0 20px;
+    }
+
+    .contact-section h2 {
+        font-size: 30px;
+    }
+}

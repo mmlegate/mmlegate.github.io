@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12+Charted&family=Karla&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="styles.css">
+    <title>Portfolio</title>
+</head>
+<body>
+    <!-- NAV BAR -->
+    <nav>
+        <div class="left">
+            <a href="/">Madeline Legate</a>
+        </div>
+        <div class="right">
+            <a href="http://github.com/mmlegate" target="_blank" rel="noopener no-referrer">
+                <i class="fa-brands fa-square-github"></i>
+                <span>Github</span>
+            </a>
+
+            <a href="http://linkedin.com/in/madeline-legate-8405801a6/" target="_blank" rel="noopener no-referrer">
+                <i class="fa-brands fa-linkedin"></i>
+                <span>Linkedin</span>
+            </a>
+
+            <a href="mailto:legate.madeline@gmail.com" >
+                <i class="fa-solid fa-square-envelope"></i>
+                <span>Email</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- INTRODUCTION -->
+    <section class="intro-section">
+        <div class="text"> <h2> Welcome to my portfolio, I'm Madeline. </h2>
+            <p>I am recent graduate with degrees in Physics and Mathematics, bringing a strong analytical background to my passion for coding. Throughout my academic journey, I have developed a solid foundation in problem-solving and quantitative analysis.</p>
+            <p>This portfolio showcases some of my key projects, highlighting my ability to solve complex problems and my commitment to delivering high-quality code. </p>
+            <p> Thank you for visiting, and I hope you enjoy exploring my work!</p>
+
+            <div class="links">
+                <a href="#skills">
+                    <i class="fa-solid fa-face-smile"></i>
+                    <span>Skills</span>
+                </a>
+
+                <a href="#work">
+                    <i class="fa-brands fa-python"></i>
+                    <span>Work</span>
+                </a>
+
+                <a href="#contact">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <span>Contact</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="headshot">
+            <img src="images/DSC_0567.webp" alt="Madeline Legate headshot">
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="skills-section">
+        <h2>Skills</h2>
+        <div class="text">
+            <p>I spent 5 years at UW completing my B.A. in Mathematics and B.S. in Physics. My math degree had a focus in philosophy which involved some predicate logic courses. My physics degree had a comprehensive focus, allowing me freedom in course selection. I ultimately went a more computational, quantum route.</p>
+            <br>
+            <br>
+            <p><b>Here are some of my favorite courses from my time at UW:</b></p>
+            <div class="education">
+                <ul> <p>Mathematical Coursework</p>
+                    <li>Scientific Computing</li>
+                    <li>Probability</li>
+                    <li>Linear Algebra</li>
+                    <li>Multivariable Calculus</li>
+                    <li>Topology</li>
+                    <li>Differential Geometry</li>
+                </ul>
+                <ul>
+                    <p>Physics Coursework</p>
+                    <li>Statistical Physics</li>
+                    <li>Classical Mechanics</li>
+                    <li>Mathematical Physics</li>
+                    <li>Quantum Computing</li>
+                    <li>Neural Network Methods in Physics</li>
+                    <li>Computational Cosmology</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="cells">
+            <div class="cell">
+                <img src="images/python_logo.webp" alt="Python logo">
+                <div class="thing" >
+                    <span>Python</span>
+                    <span class="time">5 years</span>
+                </div>
+            </div>
+
+            <div class="cell">
+                <img src="images/sql_logo.webp" alt="Sequel logo">
+                <div class="thing" >
+                    <span>SQL</span>
+                    <span class="time">3 years</span>
+                </div>
+            </div>
+
+            <div class="cell">
+                <img src="images/matlab_logo.webp" alt="MATLAB logo">
+                <div class="thing" >
+                    <span>MATLAB</span>
+                    <span class="time">3 years</span>
+                </div>
+            </div>
+
+            <div class="cell">
+                <img src="images/qiskit_logo.webp" alt="Qiskit logo">
+                <div class="thing" >
+                    <span>Qiskit</span>
+                    <span class="time">1 year</span>
+                </div>
+            </div>
+
+            <div class="cell">
+                <img src="images/html_logo.webp" alt="HTML logo">
+                <div class="thing" >
+                    <span>HTML</span>
+                    <span class="time">4 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-wrap">
+
+            <input type="radio" id="tab1" name="tabGroup1" class="tab" checked>
+            <label for="tab1">Web Tools Consultant</label>
+        
+            <input type="radio" id="tab2" name="tabGroup1" class="tab">
+            <label for="tab2">Student Researcher</label>
+        
+            <input type="radio" id="tab3" name="tabGroup1" class="tab">
+            <label for="tab3">Engagement Ambassador</label>
+        
+            <div class="tab__content">
+                <div class="job">
+                    <h3>Web Tools Consultant</h3> 
+                    <span>Mar 2021 - Jun 2024</span>
+                </div>
+                <h4>University of Washington</h4>
+                <p>As a Web Tools Consultant at UW Academic Technologies, I provided one-on-one support to UW instructors, staff, and students through email and phone. This role involved collaborating with professional staff and software developers to enhance services and improve accessibility to learning management systems, including Canvas, Zoom, Panopto, and Poll Everywhere. I also conducted interviews for potential candidates in UW Learning Technologies and analyzed records within Service Now through Power BI to track engagement and productivity.</p>
+                <p><b>Relevant tools: Service Now, Google Suite, Microsoft Office, HTML, SQL, Python </b></p>
+            </div>
+        
+            <div class="tab__content">
+                <div class="job">
+                    <h3>Student Researcher</h3> 
+                    <span>Sep 2021 - Dec 2022</span>
+                </div>
+                <h4>Washington eXperimental Mathematics Lab (WXML)</h4>
+                <p>As a Student Researcher at UW WXML, I collaborated with fellow Mathematics majors, faculty, and graduate students to exchange ideas, share insights, and tackle complex mathematical challenges from diverse perspectives. I applied data analysis in Python to generate palatable mathematical modeling and shared research findings through presentations within the department. Additionally, I published an academic paper on the coupling/decoupling of cosine functions, published in the Journal of Fourier Analysis and Applications.</p>
+                <p><b>Relevant tools: Python, Latex</b></p>
+            </div>
+        
+            <div class="tab__content">
+                <div class="job">
+                    <h3>Engagement Ambassador</h3> 
+                    <span>Jan 2021 - Apr 2021</span>
+                </div>
+                <h4>Ruffalo Noel Levitz (RNL)</h4>
+                <p>As an Engagement Ambassador at RNL, I fostered rapport with donor prospects to develop meaningful connections. My responsibilities included applying sales and negotiation tactics for fundraising, collecting user data via phone, and consolidating personal knowledge of university costs and programs. I was promoted to rapport with high-yield donor pools within one month of being hired and successfully collected a total of $7,000 in donations to various university programs within 4 months.</p>
+                <p><b>Relevant tools: RNL Engage</b></p>
+            </div>
+        
+          </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" class="work-section">
+        <h2> Body of Work</h2>
+        <div class="projects">
+            <a href="projects/service_now_powbi.html">
+            <div class="project">
+                <img src="images/torus_variations1.webp" alt="Decorative torus image">
+                <div class="overlay">Service Now to Power BI Data Analysis</div>
+            </div>
+            </a>
+            <a href="projects/auto_cnn.html">
+            <div class="project">
+                <img src="images/torus_variations2.webp" alt="Decorative torus image">
+                <div class="overlay">Generating Stellar Images with Convolutional Autoencoder</div>
+            </div>
+            </a>
+        </div>
+        <div class="projects">
+            <div class="project">
+                <img src="images/torus_variations3.webp" alt="Decorative torus image">
+                <div class="overlay">Cosine Sign Correlation</div>
+            </div>
+
+            <div class="project">
+                <img src="images/torus_variations4.webp" alt="Decorative torus image">
+                <div class="overlay">Designing Set</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+        <h2>Contact</h2>
+        <div class="group">
+            <div class="text"> 
+                <p>Whether you need a data analyst or a software engineer, I am here to rise to any challenge. My past experiences and education have cultivated a diverse skillset within me, where I find greatest satisfaction in using my capabilities for a larger effort.</p>
+                <p>Perhaps you have perused my projects and seen my code, but I also hope that you were able to glimpse the heart behind it. The projects I've chosen feature what motivates me within the institutions that I have thrived under: efficiency, exploration, and unity.</p>
+                <p>Thanks again for visiting my portfolio! Have a wonderful day :)</p>
+            </div>
+            
+            <form>
+                <label for="name">Name</label>
+                <input type="text" id="name"> 
+
+                <label for="email">Email</label>
+                <input type="email" id="email"> 
+
+                <label for="message">Message</label>
+                <textarea id="message" cols="30" rows="10"></textarea>
+                
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
