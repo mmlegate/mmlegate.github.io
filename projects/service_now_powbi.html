@@ -15,7 +15,7 @@
 
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
 
-    <title>Service Now Project</title>
+    <title>ServiceNow Project</title>
 </head>
 
 <body>
@@ -43,9 +43,9 @@
     </nav>
 
     <section class="intro-section">
-        <div class="text"> <h2> Service Now to Power BI Data Analysis</h2>
-            <p>Essentially this project leverages the Python integration within Power BI to perform an API call to Service Now. The result is a data visualization board of key insights from the data pulled from Service Now.</p>
-            <p> The data in question pertained to the instance of Service Now from my previous job as a Web Tools Consultant for UW Academic Technologies. For this website, I have used dummy data to avoid any UW  data concerns.</p>
+        <div class="text"> <h2> ServiceNow to Power BI Data Analysis</h2>
+            <p>Essentially this project leverages the Python integration within Power BI to perform an API call to ServiceNow. The result is a data visualization board of key insights from the data pulled from ServiceNow.</p>
+            <p> The data in question pertained to the instance of ServiceNow from my previous job as a Web Tools Consultant for UW Academic Technologies. For this website, I have used dummy data to avoid any concerns.</p>
             <div class="links">
                 <a href="#tools">
                     <i class="fa-solid fa-tools"></i>
@@ -74,7 +74,7 @@
 
             <!-- active tab on page load gets checked attribute -->
             <input type="radio" id="tab1" name="tabGroup1" class="tab" checked>
-            <label for="tab1"><img src="/../images/servicenow_logo.webp" alt="Service Now logo"></label>
+            <label for="tab1"><img src="/../images/servicenow_logo.webp" alt="ServiceNow logo"></label>
         
             <input type="radio" id="tab2" name="tabGroup1" class="tab">
             <label for="tab2"><img src="/../images/python_logo.webp" alt="Python logo"></label>
@@ -83,29 +83,38 @@
             <label for="tab3"><img src="/../images/powerbi_logo.webp" alt="Power BI logo"></label>
         
             <div class="tab__content">
-                <h4>Service Now</h4>
+                <h4>ServiceNow</h4>
+                <i> ServiceNow is a cloud-based platform that streamlines and automates business processes across IT, HR, and other departments, improving efficiency and service delivery.</i>
+                <br>
+                <br>
                 <ul>
-                    <li>Beep Boop</li>
-                    <li>Beep beep boop</li>
-                    <li>Meep Mooop</li>
+                    <li>To generate the query parameters for the API call, I utilized my familiarity with the Boolean operators used for ServiceNow's search function, e.g. AND, OR, NOT, etc.</li>
+                    <li>I would replicate the search I needed in ServiceNow, which gave me the query I needed for the API call.</li>
+                    <li>I wanted to generate a report for each consultant summarizing their productivity at work, which required me to filter the search via a UW NetID. The problem is, there are several consultants in the office, and I don't want to manually design each report. Thus I needed additional tools for automation.</li>
                 </ul>
             </div>
         
             <div class="tab__content">
                 <h4>Python</h4>
+                <i>Python is a versatile programming language, widely used in web development, data science, AI, and automation, supported by a rich ecosystem of libraries and frameworks.</i>
+                <br>
+                <br>
                 <ul>
-                    <li>Beep Boop</li>
-                    <li>Beep beep boop</li>
-                    <li>Meep Mooop</li>
+                    <li>Initially, I thought I could manually search each consultant in ServiceNow, export to Excel, and use Power BI from there. Even then, this requires a lot of manual labor that I wasn't too fond of.</li>
+                    <li>I realized that an API Call to ServiceNow using Python would be much easier, which was conducted via Power BI.</li>
+                    <li>There was no API documentation at my office, so I had to use trial and error to estimate the paramaters I could use to modify the API call. Luckily, ServiceNow generates query strings for each search you do. This allowed me to learn the format needed for the API call.</li>
                 </ul>
             </div>
         
             <div class="tab__content">
                 <h4>Power BI</h4>
+                <i>Power BI is a powerful business analytics tool by Microsoft that allows users to visualize and share insights from their data through interactive dashboards and reports.</i>
+                <br>
+                <br>
                 <ul>
-                    <li>Beep Boop</li>
-                    <li>Beep beep boop</li>
-                    <li>Meep Mooop</li>
+                    <li>Power BI has a handy Python integration where you ultimately paste your code within the desktop app. You just need to preprocess your data in your Python code, as the raw data from ServiceNow often has incomprehensible labels and values.</li>
+                    <li>I manually designed the report pictured below, but I thankfully only had to do it once. I created a UW theme as it looked nice and on brand. I wanted the result to be customized according to my manager's preferences as well.</li>
+                    <li>I then proceeded to edit the Power BI query for each consultant's UW NetID, generating about 30 individual reports. The end result is a concise user-friendly report that summarizes a consultant's lifetime at the company.</li>
                 </ul>
             </div>
         
@@ -114,15 +123,29 @@
 
     <!-- RESULT -->
     <section id="result" class="result-section"> <h2>Result</h2>
+        <p>Here is a screenshot of the report using some dummy data. I'll describe each section of the report as follows:</p>
+        <br>
+        <ul>
+            <li>Top graph depicts the lifetime work output of a consultant. In the example below, we can clearly see the peaks and troughs of tickets that they had worked on on a month-by-month basis.</li>
+            <li>Left pie chart describes the subject or LMS that each ticket focused on. For the example, we can see that the consultant mainly worked on tickets pertaining to Canvas.</li>
+            <li>The middle visualization shows the consultant's first and last ticket that they worked on.</li>
+            <li>Right pie chart depicts the type of task that the consultant worked on. In the example, the consultant primarily worked on requests.</li>
+        </ul>
+        <br>
         <div class="images">
-            <img src="/../images/task_example.webp" alt="Data visualization from Service Now API call">
+            <img src="/../images/task_example.webp" alt="Data visualization from ServiceNow API call">
         </div>
+        <br>
+        <p>Ultimately, I started this project with the goal of acknowledging each consultant's contributions to the office. I wanted consutlants to be reminded of their progress, and gain the ability to track their productivity for future improvement. As my this job required enrollment at the university, my report also served as a memento for graduating seniors, who would have to move on from UW IT.
+        <br>
+        <br>
+        I also laid the foundation for future consultants to work on this project after I graduate. I see much potential in Power BI's Python integration to generate live dashboards of ServiceNow records, whether it be for tracking knowledge articles, consultant productivity, or ticket lifetimes.</p>
     </section>
 
     <!-- CODE -->
     <section id="code" class="code-section">
         <div class="text"> <h2> Source Code:</h2>
-            <a href="https://github.com/mmlegate/mmlegate.github.io/tree/main/projects"><pre><code class="python">#Change netID for person you are doing the search for
+            <a href="https://github.com/mmlegate/ServiceNow-to-PowerBI"><pre><code class="python">#Change netID for person you are doing the search for
 netid = 'mlegat' 
 api_url = 'https://uw.service-now.com/api/now/table/task' # Link to API tab
 query_params = {

@@ -138,13 +138,7 @@
         self.encoder = nn.Sequential(
             nn.Conv1d(in_channels=num_features, out_channels=32, kernel_size=3, padding=1), # 1st Conv layer: input to 32 channels
             nn.ReLU(), # Activation function
-            nn.MaxPool1d(kernel_size=2, stride=2, padding=1), # Downsampling by max pooling
-            nn.Conv1d(in_channels=32, out_channels=64, kernel_size=3, padding=1), # 2nd Conv layer: 32 to 64 channels
-            nn.ReLU(), # Activation function
-            nn.MaxPool1d(kernel_size=2, stride=2, padding=1), # Downsampling by max pooling
-            nn.Conv1d(in_channels=64, out_channels=128, kernel_size=3, padding=1), # 3rd Conv layer: 64 to 128 channels
-            nn.ReLU(), # Activation function
-            nn.MaxPool1d(kernel_size=2, stride=2, padding=1) # Downsampling by max pooling</code></pre></a>
+            nn.MaxPool1d(kernel_size=2, stride=2, padding=1), # Downsampling by max pooling</code></pre></a>
 
         </div> 
         <div class="headshot">
