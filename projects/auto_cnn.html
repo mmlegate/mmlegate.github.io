@@ -45,7 +45,8 @@
     <!-- INTRODUCTION -->
     <section class="intro-section">
         <div class="text"> <h2>Generating Images from Stellar Spectra</h2>
-            <p>In the course Neural Network Methods in Physics, I was able to choose the goal of my final project. What interested me the most was generative AI.</p>
+            <p>The Sloan Digital Sky Survey (SDSS) utilizes a 2.5-meter telescope at the Apache Point Observatory in New Mexico to collect stellar data. Its primary objective is to map the universe in unprecedented detail, capturing high-resolution images and spectra of millions of celestial objects across a significant portion of the sky. </p>
+            <p>I wanted to use each stellar object's spectra paired with its image to train a neural network to generate images as they might appear on a telescope.</p>
             <div class="links">
                 <a href="#tools">
                     <i class="fa-solid fa-tools"></i>
@@ -84,28 +85,37 @@
         
             <div class="tab__content">
                 <h4>Python</h4>
+                <i>Python is a versatile programming language, widely used in web development, data science, AI, and automation, supported by a rich ecosystem of libraries and frameworks.</i>
+                <br>
+                <br>
                 <ul>
-                    <li>Beep Boop</li>
-                    <li>Beep beep boop</li>
-                    <li>Meep Mooop</li>
+                    <li>SDSS contains stellar object spectra and its image, but not in a format that can be easily obtained in large numbers. Python was used to perform an API call to the SDSS website, retrieving thousands of 64 x 64 images.</li>
+                    <li>The data was preprocessed and portioned for training, validation, and test in Python. I decided to use a portioning of 80 - 10 - 10 on 10,000 sets of image/spectra pairs.</li>
+                    <li>The images from SDSS are originally in binary, so I implemented some quick functions to transform them into RGB matrices. This permitted easy in-cell viewing in Colab.</li>
                 </ul>
             </div>
         
             <div class="tab__content">
                 <h4>Pytorch</h4>
+                <i>PyTorch is an open-source machine learning library designed for deep learning and neural network tasks, offering dynamic computational graphs and seamless integration with Python.</i>
+                <br>
+                <br>
                 <ul>
-                    <li>Beep Boop</li>
-                    <li>Beep beep boop</li>
-                    <li>Meep Mooop</li>
+                    <li>The course associated with this project, Neural Network Methods in Physics, was centered around Pytorch for implementing deep learning techniques.</li>
+                    <li>A convolutional autoencoder is ideal for this project because it effectively captures and reconstructs the spatial and spectral features of astronomical images and spectra.</li>
+                    <li>I only applied 1D convolutional layers, effectively reconstructing the 1D input array of 8 spectral values into a 1 x (64 x 64) array of RGB values. This allowed me to reshape the output into its proper RGB matrix format for viewing. </li>
+                    <li>For the results below, we used 10,000 sets of 8 spectral values  and a batchsize of 10. We scaled output channels 2X at each convolution with a fully connected layer of size 256.</li>
                 </ul>
             </div>
         
             <div class="tab__content">
                 <h4>Google Colab</h4>
+                <i>Google Colab is a cloud-based Jupyter notebook environment that allows you to write, execute, and share code, while also using free GPU and TPU resources for machine learning and data analysis tasks.</i>
+                <br>
+                <br>
                 <ul>
-                    <li>Beep Boop</li>
-                    <li>Beep beep boop</li>
-                    <li>Meep Mooop</li>
+                    <li>To organize the final project of this course, I used Google Colab. It was most appropriate due to its integration with Google Drive, as I configured the API call to automatically download each file in Drive.</li>
+                    <li>The end result is a concise report containing a convolutional autoencoder of accuracy 85%. The steps to using the convolutional autoencoder is clearly discretized for easy following.</li>
                 </ul>
             </div>
         
@@ -114,17 +124,23 @@
 
     <!-- RESULT -->
     <section id="result" class="result-section"> <h2>Result</h2>
-        <div class="images">
-            <div class="data">
-                <img src="/../images/auto_cnn_data.webp" alt="Image data from SDSS">
-                <p>Some text</p>
-            </div>
-            <p>More explicative text</p>
-            <div class="comparison">
-                <img src="/../images/auto_cnn_best.webp" alt="Comparison of neural network output and source image">
-                <img src="/../images/auto_cnn_worst.webp" alt="Comparison of neural network output and source image">
-            </div>
+        <div class="data">
+            <img src="/../images/auto_cnn_data.webp" alt="Image data from SDSS">
+            <p>The dataset that we used to pull images from SDSS is located on <a href="https://www.kaggle.com/datasets/fedesoriano/stellar-classification-dataset-sdss17">Kaggle</a>. There are three classes for the stellar objects, pictured right: galaxy, quasar, and star. 
+            <br>
+            <br>
+            The neural network performs best when training on only one class. The results below showcase only galaxies with an accuracy of about 85% using the SSIM index.</p>
         </div>
+        <p>Below is the best/worst results on the testing dataset. Left, we see that the highest accuracy is 97%, and right, we see the lowest accuracy of 17%.</p>
+        <div class="comparison">
+            <img src="/../images/auto_cnn_best.webp" alt="Comparison of neural network output and source image">
+            <img src="/../images/auto_cnn_worst.webp" alt="Comparison of neural network output and source image">
+        </div>
+        <p>In order to determine which datapoints were confusing the neural network, we generated a pairplot of the spectral data, where each point is shaded with the SSIM index. The more purple the datapoint, the worse the neural network performed.
+        <br>
+        <br>
+        We see that each component of the spectral data is positively related to another. The neural network performs best closer to the origin, where the linear relationship is most clearly defined. As we move away from the origin, there is more uncertainty that the neural network must account for.</p>
+        <img src="/../images/auto_cnn_pairplot.webp" alt="Pairplot of spectral data">
     </section>
 
     <!-- CODE -->
