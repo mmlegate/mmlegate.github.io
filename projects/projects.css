@@ -156,6 +156,10 @@ nav .right a span {
     height: 30px;
 }
 
+.tools-section .tab-wrap label .latex {
+    height: 15px;
+}
+
 .tools-section .tab-wrap h4 {
     font-size: 24px;
     margin-bottom: 5px;
