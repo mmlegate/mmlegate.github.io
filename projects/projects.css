@@ -253,7 +253,20 @@ nav .right a span {
 .result-section .comparison img {
     align-self: center;
     max-width: 40%;
+    object-fit: contain;
 }
+
+.result-section .comparison .wide {
+    max-width: 100%;
+    height: 300px;
+    width: auto;
+}
+
+ .result-section .comparison .tall {
+    max-width: 100%;
+    height: 300px;
+    width: auto;
+ }
 
 /* CODE */
 
@@ -319,6 +332,15 @@ nav .right a span {
     width: 100%;
     height: auto;
     filter: saturate(0.7);
+}
+
+@media (max-width: 1250px) {
+    /* RESULT */
+    .result-section .inquiry .comparison {
+        flex-direction: column;
+        padding: 10px 0px;
+        gap: 10px;
+    }
 }
 
 @media (max-width: 800px) {
