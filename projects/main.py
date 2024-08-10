@@ -2,6 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math
 import matplotlib.patches as mpatches
+from base64 import b64encode
+from io import BytesIO
+from js import document
 
 def find_sign_change(coeff=1):
   """
@@ -55,20 +58,7 @@ def get_patches(coeffs=[1]):
 
   return patches
 
-# Get the input values
-num1 = int(Element("input1").element.value)
-num2 = int(Element("input2").element.value)
-coeffs = [num1, num2]
-
-# Calculate slope from coefficients
-slope = max(coeffs)/min(coeffs)
-
-# Define original set of linear lines
-# Original set should contain only one line
-x_0 = np.array([np.linspace(0, 2, 1000)])
-y_0 = np.array([slope * np.linspace(0, 2, 1000)])
-
-def yoverload(x_line, y_line, max_length):
+def yoverload(x_line, y_line, max_length=20):
     """
     Plots ratio of angles from two cosine functions on a torus in the y-direction
 
@@ -88,7 +78,6 @@ def yoverload(x_line, y_line, max_length):
 
     # We need index where y first passes 2, as this is where y re-enters from the bottom of torus
     index = len(y)
-    print(index)
     for i in range(len(y)):
       if y[i] > 2:
         index = i
@@ -141,6 +130,15 @@ def xoverload(x_line, y_line):
     Returns:
     yoverload(x, y): Cartesian coordinates of plotted linear function on torus in x-direction, y-direction to be adjusted by yoverload()
     """
+
+    # Get the input values
+    num1 = int(document.getElementById("input1").value)
+    num2 = int(document.getElementById("input2").value)
+    coeffs = [num1, num2]
+
+    # Calculate slope from coefficients
+    slope = max(coeffs)/min(coeffs)
+
     # Point of re-entry on x-axis is (0, right_endpoint)
     right_endpoint =y_line[-1][-1]
 
@@ -155,6 +153,23 @@ def xoverload(x_line, y_line):
     return yoverload(x, y)
 
 def generate_graph():
+    # Clear the previous graph
+    graph_div = document.getElementById("lineplot")
+    graph_div.innerHTML = ""  # This clears the existing plot
+
+    # Get the input values
+    num1 = int(document.getElementById("input1").value)
+    num2 = int(document.getElementById("input2").value)
+    coeffs = [num1, num2]
+
+    # Calculate slope from coefficients
+    slope = max(coeffs)/min(coeffs)
+
+    # Define original set of linear lines
+    # Original set should contain only one line
+    x_0 = np.array([np.linspace(0, 2, 1000)])
+    y_0 = np.array([slope * np.linspace(0, 2, 1000)])
+
     x, y = yoverload(x_0, y_0, 20)
     patches = get_patches()
     fig = plt.figure()
@@ -168,4 +183,15 @@ def generate_graph():
     plt.ylabel('Radians')
     plt.title('Ratio of Cosine Angles on Torus')
     plt.grid()
-    display(fig, target="lineplot")
+    
+    # Save the plot to a BytesIO object
+    buf = BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    
+    # Encode the image to base64
+    img_str = b64encode(buf.read()).decode('utf-8')
+    
+    # Insert the image into the HTML
+    img_tag = f'<img src="data:image/png;base64,{img_str}"/>'
+    graph_div.innerHTML = img_tag

@@ -14,13 +14,12 @@
     <link rel="stylesheet" href="projects.css">
 
     <!-- PyScript CSS -->
-    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 
-    <py-env>
-        - matplotlib
-        - numpy
-    </py-env>
+    <py-config type="toml">
+		packages = ["numpy", "matplotlib", "mpld3"]
+    </py-config>
     
     <title>Cosine Sign Correlation</title>
 </head>
@@ -135,7 +134,7 @@
             <div class="inquiry">
                 Consider two cosine functions:
                 <br><b>
-                <div>f(x) = cos(ax)
+                <div class="comparison">f(x) = cos(ax)
                 <br>
                 g(x) = cox(bx)</div>
                 <br></b>
@@ -152,23 +151,47 @@
                 <img src="/../images/cosine_plot_plane.webp" class="wide">
                 <img src="/../images/cosine_plot_torus.webp" class="tall">
                 </div>
-                We can express infinite cosine functions in a finite manner by using the topological map of the torus. Moreover, we can further simplify this visualization by 'unwrapping' the torus like so and plotting the ratio of cosine angles.
+                We can express infinite cosine functions in a finite manner by using the topological map of the torus. Moreover, we can further simplify this visualization by 'unwrapping' the torus like so and plotting the ratio of cosine angles. Note in the graph to the right, the blue shaded regions are where the two cosine functions share the same sign.
                 <br>
                 <div class="comparison">
                 <img src="/../images/torus_to_rectangle.gif" class="wide">
                 <img src="/../images/ratio_plot_plane.webp" class="tall">
-                </div>
-                Try it yourself!
-                <label for="input1">Enter first number:</label>
-    <input type="number" id="input1" value="1">
-    
-    <label for="input2">Enter second number:</label>
-    <input type="number" id="input2" value="3">
-    
-    <button id="generateButton" py-click="generate_graph()">Generate Graph</button>
+            </div>
+            <h2>Try it yourself!</h2>
+            <div class="demo">
+            <div class="form">
+                <label for="input1">Enter a number:</label>
+                <input type="number" id="input1" value="1" min="1">
 
-    <div id="lineplot"></div>
-    <py-script src="./main.py" output="lineplot"></py-script>
+                <label for="input2">Enter another number:</label>
+                <input type="number" id="input2" value="3" min="1">
+
+                <button id="generateButton" py-click="generate_graph()">Generate Graph</button>
+            </div>
+            <div id="lineplot"></div>
+            </div>
+            <py-script src="./main.py" output="lineplot"></py-script>
+            <p> For higher dimensions, we find the following sequences of coefficients are most decoupled:</p>
+            <div class="comparison">
+                <div class="column">
+                    <div><h3># of Dimensions</h3></div>
+                    <div>
+                        2
+                        <br>3
+                        <br>4
+                        <br>5
+                    </div>
+                </div>
+                <div class="column">
+                    <div><h3>Sequence</h3></div>
+                    <div>{1, 3}
+                    <br>{1, 3, 9}
+                    <br>{1, 3, 11, 33}
+                    <br>{1, 3, 11, 35, 105}
+                    </div>
+                </div>
+            </div>
+            <p>The problem becomes more intricate the more numbers you add to the mix. In the above example, we used two numbers, but our research was focused on 3+ numbers. There isn't an effective visualization for this, as the torus model increases in dimension with each number you add. For example, three cosine functions would need to be modeled on a cube by unwrapping the torus. Please see the full tutorial on my Github for a more thorough coverage of the research!</p>
         </section>
     
         <!-- CODE -->
