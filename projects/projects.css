@@ -334,15 +334,6 @@ nav .right a span {
     filter: saturate(0.7);
 }
 
-@media (max-width: 1250px) {
-    /* RESULT */
-    .result-section .inquiry .comparison {
-        flex-direction: column;
-        padding: 10px 0px;
-        gap: 10px;
-    }
-}
-
 @media (max-width: 800px) {
     /* INTRODUCTION */
     .intro-section {
@@ -357,6 +348,12 @@ nav .right a span {
     /* RESULT */
     .result-section .data {
         flex-direction: column;
+    }
+
+    .result-section .inquiry .comparison {
+        flex-direction: column;
+        padding: 10px 0px;
+        gap: 10px;
     }
     
 }
