@@ -45,7 +45,7 @@
             <div class="text"> <h2>Depop Data Analysis</h2>
                 <p>A hobby I picked up over the last several months is reselling clothes I find at local thrift stores. The conduit of my small business is an app called Depop, a social e-commerce app with 42 million registered users (as of 2023).
                 <br><br>
-                What interests me most is Depop's overlapp with technology for optimizing user experience. This led me to building a convolutional neural network in attempts to predict the price that my items will sell at.</p>
+                What interests me most is Depop's overlapp with technology for optimizing user experience. This led me to building a simple neural network in attempts to predict the price that my items will sell at.</p>
                 <div class="links">
                     <a href="#tools">
                         <i class="fa-solid fa-tools"></i>
@@ -127,13 +127,13 @@
                 <img src="/../images/depop_nn_data.webp" alt="Example item container on Depop's website">
                 <br>
                 <br>
-                <p>Above is an example of an item container that was scraped for information. Note that items contain more images in their individual posts, but for now the CNN only has access to the 'top' image, the first image that users will see when scrolling through Depop.</p>
+                <p>Above is an example of an item container that was scraped for information. Note that items contain more images in their individual posts, but for now the NN only has access to the 'top' image, the first image that users will see when scrolling through Depop.</p>
             </div>
             <p>Below is the testing results on the last batch:</p>
             <div>
                 <img src="/../images/depop_nn_performance.webp" alt="Comparison of neural network output and source image">
             </div>
-            <p>Depop only contains a limited amount of brand tags for each item, so if an item's brand is unlisted, it falls into the 'Other' category. Unfortunately, I believe this leads to a gap of necessary information for the CNN which attributes the large discrepancy on several items. Above, the white dress falls under the 'Other' category, which is the worst prediction in the test set. 
+            <p>Depop only contains a limited amount of brand tags for each item, so if an item's brand is unlisted, it falls into the 'Other' category. Unfortunately, I believe this leads to a gap of necessary information for the NN which attributes the large discrepancy on several items. Above, the white dress falls under the 'Other' category, which is the worst prediction in the test set. 
             <br>
             <br>
             We see below that there is some overfitting, and the validation accuracy is rather stable over the course of the training.</p>
