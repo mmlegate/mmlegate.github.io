@@ -45,7 +45,7 @@
             <div class="text"> <h2>Depop Data Analysis</h2>
                 <p>A hobby I picked up over the last several months is reselling clothes I find at local thrift stores. The conduit of my small business is an app called Depop, a social e-commerce app with 42 million registered users (as of 2023).
                 <br><br>
-                What interests me most about Depop is its potential overlapp with technology and how machine learning can be used to better optimize the app and my own personal sales.</p>
+                What interests me most is Depop's overlapp with technology for optimizing user experience. This led me to building a convolutional neural network in attempts to predict the price that my items will sell at.</p>
                 <div class="links">
                     <a href="#tools">
                         <i class="fa-solid fa-tools"></i>
@@ -74,38 +74,44 @@
     
                 <!-- active tab on page load gets checked attribute -->
                 <input type="radio" id="tab1" name="tabGroup1" class="tab" checked>
-                <label for="tab1"><img src="/../images/python_logo.webp" alt="Service Now logo"></label>
+                <label for="tab1"><img src="/../images/python_logo.webp" alt="Python logo"></label>
             
                 <input type="radio" id="tab2" name="tabGroup1" class="tab">
-                <label for="tab2"><img src="/../images/pytorch_logo.webp" alt="Python logo"></label>
+                <label for="tab2"><img src="/../images/pytorch_logo.webp" alt="PyTorch logo"></label>
             
                 <input type="radio" id="tab3" name="tabGroup1" class="tab">
-                <label for="tab3"><img src="/../images/colab_logo.webp" alt="Power BI logo"></label>
+                <label for="tab3"><img src="/../images/colab_logo.webp" alt="Google Colab logo"></label>
             
                 <div class="tab__content">
                     <h4>Python</h4>
+                    <i>Python is a versatile programming language, widely used in web development, data science, AI, and automation, supported by a rich ecosystem of libraries and frameworks.</i>
+                    <br>
+                    <br>
                     <ul>
-                        <li>Beep Boop</li>
-                        <li>Beep beep boop</li>
-                        <li>Meep Mooop</li>
+                        <li>The first task was to obtain the data required from my shop, which unfortunately isn't easily accessed through Depop's features (e.g. Seller Stats). I used Python, specifically the selenium library, to scrape various information that I needed from each item.</li>
+                        <li>Data acquired includes: item image, description, brand, size, price listed. </li>
+                        <li>I do not condone further scraping of Depop, as this is against their terms of service, but we prevail in the name of science.</li>
                     </ul>
                 </div>
             
                 <div class="tab__content">
                     <h4>Pytorch</h4>
+                    <i>PyTorch is an open-source machine learning library designed for deep learning and neural network tasks, offering dynamic computational graphs and seamless integration with Python.</i>
+                    <br>
+                    <br>
                     <ul>
-                        <li>Beep Boop</li>
-                        <li>Beep beep boop</li>
-                        <li>Meep Mooop</li>
+                        <li>Pytorch was used to actually construct the neural network used to output a predicted price. It currently consists of four fully contected layers with one dropout layer, but further modifications to improve accuracy will be implemented. </li>
+                        <li>Data preparation involved conversion of the item image into an RGB matrix, tokenizing the item description, and one-hot-encoding the size, brand, and price listed.</li>
+                        <li>Using the Mean Absolute Percentage Error (MAPE) standard, the model is currently performing at 75% accuracy. My shop only contains about 500 sales, so as time goes on I should be able improve its accuracy with more sales and modifications.</li>
                     </ul>
                 </div>
             
                 <div class="tab__content">
-                    <h4>Depop</h4>
+                    <h4>Google Colab</h4>
                     <ul>
-                        <li>Beep Boop</li>
-                        <li>Beep beep boop</li>
-                        <li>Meep Mooop</li>
+                        <li>Colab was essential for a more user friendly display of the neural network, and it was leveraged for its integration with Drive.</li>
+                        <li>Scraping Depop's website should be minimized, thus Drive was needed to save each item image for easy access.</li>
+                        <li>Colab was also helpful for creating visualizations of model performance, note that in the images displayed below there are certain factors that may hinder performance: the changing background for my modeling of items, the inconsistent angle of the camera, etc.</li>
                     </ul>
                 </div>
             
@@ -115,22 +121,33 @@
         <!-- RESULT -->
         <section id="result" class="result-section"> <h2>Result</h2>
             <div>
-                Under Construction
+                <img src="/../images/depop_nn_data.webp" alt="Example item container on Depop's website">
+                <br>
+                <br>
+                <p>Above is an example of an item container that was scraped for information. Note that items contain more images in their individual posts, but for now the CNN only has access to the 'top' image, the first image that users will see when scrolling through Depop.</p>
             </div>
+            <p>Below is the testing results on the last batch:</p>
+            <div>
+                <img src="/../images/depop_nn_performance.webp" alt="Comparison of neural network output and source image">
+            </div>
+            <p>Depop only contains a limited amount of brand tags for each item, so if an item's brand is unlisted, it falls into the 'Other' category. Unfortunately, I believe this leads to a gap of necessary information for the CNN which attributes the large discrepancy on several items. Above, the white dress falls under the 'Other' category, which is the worst prediction in the test set. 
+            <br>
+            <br>
+            We see below that there is some overfitting, and the validation accuracy is rather stable over the course of the training.</p>
+            <img src="/../images/depop_nn_graph.webp" alt="Plot of training loss and validationa accuracy">
         </section>
     
         <!-- CODE -->
         <section id="code" class="code-section">
             <div class="text"> <h2> Source Code:</h2>
-                <a href="https://github.com/mmlegate/mmlegate.github.io/tree/main/projects"><pre><code class="python">class Autoencoder(nn.Module):
-        def __init__(self):
-            super(Autoencoder, self).__init__()
-                
-            # Encoder part of the autoencoder: output channels scale 2X at each convolution, ReLU activation and Max Pooling between each layer
-            self.encoder = nn.Sequential(
-                nn.Conv1d(in_channels=num_features, out_channels=32, kernel_size=3, padding=1), # 1st Conv layer: input to 32 channels
-                nn.ReLU(), # Activation function
-                nn.MaxPool1d(kernel_size=2, stride=2, padding=1), # Downsampling by max pooling </code></pre></a>
+                <a href="https://github.com/mmlegate/mmlegate.github.io/tree/main/projects"><pre><code class="python">class DepopPriceNN(nn.Module):
+                    def __init__(self, input_size):
+                        super(DepopPriceNN, self).__init__()
+                        self.fc1 = nn.Linear(input_size, 256)  # First hidden layer
+                        self.fc2 = nn.Linear(256, 128)           # Second hidden layer
+                        self.dropout = nn.Dropout(0.2)            # Dropout layer
+                        self.fc3 = nn.Linear(128, 64)            # Third hidden layer
+                        self.fc4 = nn.Linear(64, 1)             # Output layer (price)</code></pre></a>
     
             </div> 
             <div class="headshot">
