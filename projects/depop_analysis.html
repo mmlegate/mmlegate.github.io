@@ -43,9 +43,9 @@
         <!-- INTRODUCTION -->
         <section class="intro-section">
             <div class="text"> <h2>Depop Data Analysis</h2>
-                <p>A hobby I picked up over the last several months is reselling clothes I find at local thrift stores. The conduit of my small business is an app called Depop, a social e-commerce app with 42 million registered users (as of 2023).
+                <p>A hobby I picked up over the last several months is reselling clothes I find at local thrift stores. The conduit of my small business is an app called Depop, a social e-commerce app with 42 million registered users (as of 2024).
                 <br><br>
-                What interests me most is Depop's overlapp with technology for optimizing user experience. This led me to building a simple neural network in attempts to predict the price that my items will sell at.</p>
+                What interests me most is Depop's overlapp with technology for optimizing user experience. This led me to building a convolutional neural network in attempts to predict the price that my items will sell at.</p>
                 <div class="links">
                     <a href="#tools">
                         <i class="fa-solid fa-tools"></i>
@@ -100,9 +100,9 @@
                     <br>
                     <br>
                     <ul>
-                        <li>Pytorch was used to actually construct the neural network used to output a predicted price. It currently consists of four fully contected layers with one dropout layer, but further modifications to improve accuracy will be implemented. </li>
+                        <li>Pytorch was used to actually construct the neural network used to output a predicted price. I started with a simple fully connected network, however this performed very poorly. My current neural network has convolutional layers for images, as well as layers from the BERT model for descriptions. Further modifications to improve accuracy are in the works. </li>
                         <li>Data preparation involved conversion of the item image into an RGB matrix, tokenizing the item description, and one-hot-encoding the size, brand, and price listed.</li>
-                        <li>Using the Mean Absolute Percentage Error (MAPE) standard, the model is currently performing at 75% accuracy. My shop only contains about 500 sales, so as time goes on I should be able improve its accuracy with more sales and modifications.</li>
+                        <li>Using the Mean Absolute Percentage Error (MAPE) standard, the simple model is currently performing with 71% error and the CNN-BERT model with 41% error. My shop only contains about 500 sales, so as time goes on I should be able improve its accuracy with more sales and modifications.</li>
                     </ul>
                 </div>
             
@@ -137,20 +137,23 @@
             <br>
             <br>
             We see below that there is some overfitting, and the validation accuracy is rather stable over the course of the training.</p>
-            <img src="/../images/depop_nn_graph.webp" alt="Plot of training loss and validationa accuracy">
+            <img src="/../images/depop_performance.webp" alt="Plot of training loss and validationa accuracy">
         </section>
     
         <!-- CODE -->
         <section id="code" class="code-section">
             <div class="text"> <h2> Source Code:</h2>
-                <a href="https://github.com/mmlegate/mmlegate.github.io/tree/main/projects"><pre><code class="python">class DepopPriceNN(nn.Module):
-                    def __init__(self, input_size):
-                        super(DepopPriceNN, self).__init__()
-                        self.fc1 = nn.Linear(input_size, 256)  # First hidden layer
-                        self.fc2 = nn.Linear(256, 128)           # Second hidden layer
-                        self.dropout = nn.Dropout(0.2)            # Dropout layer
-                        self.fc3 = nn.Linear(128, 64)            # Third hidden layer
-                        self.fc4 = nn.Linear(64, 1)             # Output layer (price)</code></pre></a>
+                <a href="https://github.com/mmlegate/mmlegate.github.io/tree/main/projects"><pre><code class="python">class DepopPriceCNN(nn.Module):
+                    def __init__(self):
+                        super(DepopPriceCNN, self).__init__()
+                        
+                        # CNN for image input (assuming 3-channel RGB input, 128x128 images)
+                        self.conv1 = nn.Sequential(
+                            nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, stride=1, padding=1),
+                            nn.BatchNorm2d(16),
+                            nn.ReLU(),
+                            nn.MaxPool2d(kernel_size=2, stride=2)
+                        )</code></pre></a>
     
             </div> 
             <div class="headshot">
