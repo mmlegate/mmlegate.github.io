@@ -225,6 +225,11 @@ nav .right a span {
     width: 100%;
 }
 
+.result-section iframe {
+    width: 100%;
+    min-height: 600px;
+}
+
 .result-section .data {
     display: flex;
     gap: 50px;
@@ -395,6 +400,10 @@ nav .right a span {
     /* RESULT */
     .result-section .data {
         flex-direction: column;
+    }
+
+    .result-section iframe {
+        min-height: 400px;
     }
 
     .result-section .inquiry .comparison {
