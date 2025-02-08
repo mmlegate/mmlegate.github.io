@@ -260,6 +260,12 @@ nav .right a span {
     background-color: #ccc2db;
 }
 
+.skills-section .tab-wrap .tab:nth-of-type(2):checked ~ .tab__content:nth-of-type(2),
+.skills-section .tab-wrap .tab:nth-of-type(2):checked + label:nth-of-type(2){
+    opacity: 1;
+    background-color: #ccc2db;
+}
+
 .skills-section .tab-wrap .tab:nth-of-type(3):checked ~ .tab__content:nth-of-type(3),
 .skills-section .tab-wrap .tab:nth-of-type(3):checked + label:nth-of-type(3){
     opacity: 1;
@@ -323,6 +329,39 @@ nav .right a span {
     filter: grayscale(0.3)
 }
 
+.work-section .currentproject {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.work-section .currentproject img {
+    display: block;
+    width: 600px;
+    height: auto;
+    filter: grayscale(1);
+    border: 2px solid black;
+    transition: 0.5s ease;
+    margin-bottom: 50px;
+}
+
+.work-section .currentproject .overlay {
+    position: absolute;
+    bottom: 40% ;
+    background: rgba(0, 0, 0, 0.5); /* Black see-through */
+    width: 600px;
+    opacity:1;
+    color: white;
+    font-size: 24px;
+    padding: 20px;
+    text-align: center;
+}
+
+.work-section .currentproject:hover img {
+    filter: grayscale(0.3);
+}
 
 /* CONTACT */
 .contact-section {
@@ -403,6 +442,13 @@ nav .right a span {
 
     .work-section .projects {
         flex-direction: column;
+    }
+
+    .work-section .projects .project {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        position: relative;
     }
 
     /* CONTACT */

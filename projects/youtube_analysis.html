@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12+Charted&family=Karla&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="projects.css">
+
+    <title>YouTube Analysis</title>
+</head>
+
+<body>
+    <!-- NAV BAR -->
+    <nav>
+        <div class="left">
+            <a href="/">Madeline Legate</a>
+        </div>
+        <div class="right">
+            <a href="http://github.com/mmlegate" target="_blank" rel="noopener no-referrer">
+                <i class="fa-brands fa-square-github"></i>
+                <span>Github</span>
+            </a>
+
+            <a href="http://linkedin.com/in/madeline-legate-8405801a6/" target="_blank" rel="noopener no-referrer">
+                <i class="fa-brands fa-linkedin"></i>
+                <span>Linkedin</span>
+            </a>
+
+            <a href="mailto:legate.madeline@gmail.com" >
+                <i class="fa-solid fa-square-envelope"></i>
+                <span>Email</span>
+            </a>
+        </div>
+    </nav>
+
+        <!-- INTRODUCTION -->
+        <section class="intro-section">
+            <div class="text"> <h2>YouTube Comment Analysis with ABSA</h2>
+                <p>Description
+                <br><br>
+                Work in progress</p>
+                <div class="links">
+                    <a href="#tools">
+                        <i class="fa-solid fa-tools"></i>
+                        <span>Tools</span>
+                    </a>
+    
+                    <a href="#result">
+                        <i class="fa-solid fa-gift"></i>
+                        <span>Result</span>
+                    </a>
+    
+                    <a href="#code">
+                        <i class="fa-solid fa-code"></i>
+                        <span>Code</span>
+                    </a>
+                </div>
+            </div> 
+            <div class="headshot">
+                <img src="/../images/home_background.webp">
+            </div>
+        </section>
+    
+        <!-- TOOLS -->
+        <section id="tools" class="tools-section"> <h2>Tools</h2>
+            <div class="tab-wrap">
+    
+                <!-- active tab on page load gets checked attribute -->
+                <input type="radio" id="tab1" name="tabGroup1" class="tab" checked>
+                <label for="tab1"><img src="/../images/python_logo.webp" alt="Python logo"></label>
+            
+                <input type="radio" id="tab2" name="tabGroup1" class="tab">
+                <label for="tab2"><img src="/../images/pytorch_logo.webp" alt="PyTorch logo"></label>
+            
+                <input type="radio" id="tab3" name="tabGroup1" class="tab">
+                <label for="tab3"><img src="/../images/colab_logo.webp" alt="Google Colab logo"></label>
+            
+                <div class="tab__content">
+                    <h4>Python</h4>
+                    <i>Python is a versatile programming language, widely used in web development, data science, AI, and automation, supported by a rich ecosystem of libraries and frameworks.</i>
+                    <br>
+                    <br>
+                    <ul>
+                        <li>The first task was to obtain the data required from my shop, which unfortunately isn't easily accessed through Depop's features (e.g. Seller Stats). I used Python, specifically the selenium library, to scrape various information that I needed from each item.</li>
+                        <li>Data acquired includes: item image, description, brand, size, price listed. </li>
+                        <li>I do not condone further scraping of Depop, as this is against their terms of service, but we prevail in the name of science.</li>
+                    </ul>
+                </div>
+            
+                <div class="tab__content">
+                    <h4>Pytorch</h4>
+                    <i>PyTorch is an open-source machine learning library designed for deep learning and neural network tasks, offering dynamic computational graphs and seamless integration with Python.</i>
+                    <br>
+                    <br>
+                    <ul>
+                        <li>Pytorch was used to actually construct the neural network used to output a predicted price. I started with a simple fully connected network, however this performed very poorly. My current neural network has convolutional layers for images, as well as layers from the BERT model for descriptions. Further modifications to improve accuracy are in the works. </li>
+                        <li>Data preparation involved conversion of the item image into an RGB matrix, tokenizing the item description, and one-hot-encoding the size, brand, and price listed.</li>
+                        <li>Using the Mean Absolute Percentage Error (MAPE) standard, the simple model is currently performing with 71% error and the CNN-BERT model with 41% error. My shop only contains about 500 sales, so as time goes on I should be able improve its accuracy with more sales and modifications.</li>
+                    </ul>
+                </div>
+            
+                <div class="tab__content">
+                    <h4>Google Colab</h4>
+                    <i>Google Colab is a cloud-based Jupyter notebook environment that allows you to write, execute, and share code, while also using free GPU and TPU resources for machine learning and data analysis tasks.</i>
+                    <br>
+                    <br>
+                    <ul>
+                        <li>Colab was essential for a more user friendly display of the neural network, and it was leveraged for its integration with Drive.</li>
+                        <li>Scraping Depop's website should be minimized, thus Drive was needed to save each item image for easy access.</li>
+                        <li>Colab was also helpful for creating visualizations of model performance, note that in the images displayed below there are certain factors that may hinder performance: the changing background for my modeling of items, the inconsistent angle of the camera, etc.</li>
+                    </ul>
+                </div>
+            
+              </div>
+        </section>
+    
+        <!-- RESULT -->
+        <section id="result" class="result-section"> <h2>Result</h2>
+            <div>
+                <img src="/../images/depop_nn_data.webp" alt="Example item container on Depop's website">
+                <br>
+                <br>
+                <p>Above is an example of an item container that was scraped for information. Note that items contain more images in their individual posts, but for now the NN only has access to the 'top' image, the first image that users will see when scrolling through Depop.</p>
+            </div>
+            <p>Below is the testing results on the last batch:</p>
+            <div>
+                <img src="/../images/depop_nn_performance.webp" alt="Comparison of neural network output and source image">
+            </div>
+            <p>Depop only contains a limited amount of brand tags for each item, so if an item's brand is unlisted, it falls into the 'Other' category. Unfortunately, I believe this leads to a gap of necessary information for the NN which attributes the large discrepancy on several items. Above, the white dress falls under the 'Other' category, which is the worst prediction in the test set. 
+            <br>
+            <br>
+            We see below that there is some overfitting, and the validation accuracy is rather unstable over the course of the training.
+            <br>
+            <br>
+            <img src="/../images/depop_performance.webp" alt="Plot of training loss and validationa accuracy">
+            <br>
+            <br>
+            Additionally, I generated a report for my shop in Power BI to keep track of profit and other metrics. I will keep the report updated as I implement my neural network for improvement of sales. </p>
+            <iframe title="Sales Report with Predictions" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiMjY0ZGJiNTEtNjNkZC00MDYwLWE5YjYtYzRmZTczNzExNmIxIiwidCI6ImY2YjZkZDViLWYwMmYtNDQxYS05OWEwLTE2MmFjNTA2MGJkMiIsImMiOjZ9&pageName=adcf18bf48d7337299b5" frameborder="0" allowFullScreen="true"></iframe>
+        </section>
+    
+        <!-- CODE -->
+        <section id="code" class="code-section">
+            <div class="text"> <h2> Source Code:</h2>
+                <a href="https://github.com/mmlegate/mmlegate.github.io/tree/main/projects"><pre><code class="python">class DepopPriceCNN(nn.Module):
+                    def __init__(self):
+                        super(DepopPriceCNN, self).__init__()
+                        
+                        # CNN for image input (assuming 3-channel RGB input, 128x128 images)
+                        self.conv1 = nn.Sequential(
+                            nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, stride=1, padding=1),
+                            nn.BatchNorm2d(16),
+                            nn.ReLU(),
+                            nn.MaxPool2d(kernel_size=2, stride=2)
+                        )</code></pre></a>
+    
+            </div> 
+            <div class="headshot">
+                <img src="/../images/torus background.webp">
+            </div>
+        </section>
+</body>
