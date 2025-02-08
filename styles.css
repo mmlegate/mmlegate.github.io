@@ -260,8 +260,8 @@ nav .right a span {
     background-color: #ccc2db;
 }
 
-.skills-section .tab-wrap .tab:nth-of-type(2):checked ~ .tab__content:nth-of-type(2),
-.skills-section .tab-wrap .tab:nth-of-type(2):checked + label:nth-of-type(2){
+.skills-section .tab-wrap .tab:nth-of-type(3):checked ~ .tab__content:nth-of-type(3),
+.skills-section .tab-wrap .tab:nth-of-type(3):checked + label:nth-of-type(3){
     opacity: 1;
     background-color: #ccc2db;
 }
