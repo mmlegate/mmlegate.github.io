@@ -157,41 +157,50 @@ def generate_graph():
     graph_div = document.getElementById("lineplot")
     graph_div.innerHTML = ""  # This clears the existing plot
 
-    # Get the input values
-    num1 = int(document.getElementById("input1").value)
-    num2 = int(document.getElementById("input2").value)
-    coeffs = [num1, num2]
+    try:
+        # Get the input values
+        num1 = int(document.getElementById("input1").value)
+        num2 = int(document.getElementById("input2").value)
+        coeffs = [num1, num2]
 
-    # Calculate slope from coefficients
-    slope = max(coeffs)/min(coeffs)
+        # Calculate slope from coefficients
+        slope = max(coeffs) / min(coeffs)
 
-    # Define original set of linear lines
-    # Original set should contain only one line
-    x_0 = np.array([np.linspace(0, 2, 1000)])
-    y_0 = np.array([slope * np.linspace(0, 2, 1000)])
+        # Define original set of linear lines
+        x_0 = np.array([np.linspace(0, 2, 1000)])
+        y_0 = np.array([slope * np.linspace(0, 2, 1000)])
 
-    x, y = yoverload(x_0, y_0, 20)
-    patches = get_patches()
-    fig = plt.figure()
-    for i in range(len(y)):
-      plt.scatter(x[i], y[i], s=1, color='blue')
-    for patch in patches:
-      plt.gca().add_patch(patch)
-    plt.xlim(0, 2)
-    plt.ylim(0, 2)
-    plt.xlabel('Radians')
-    plt.ylabel('Radians')
-    plt.title('Ratio of Cosine Angles on Torus')
-    plt.grid()
-    
-    # Save the plot to a BytesIO object
-    buf = BytesIO()
-    plt.savefig(buf, format='png')
-    buf.seek(0)
-    
-    # Encode the image to base64
-    img_str = b64encode(buf.read()).decode('utf-8')
-    
-    # Insert the image into the HTML
-    img_tag = f'<img src="data:image/png;base64,{img_str}"/>'
-    graph_div.innerHTML = img_tag
+        x, y = yoverload(x_0, y_0, 20)
+        patches = get_patches()
+
+        # Create the plot
+        fig = plt.figure()
+        for i in range(len(y)):
+            plt.scatter(x[i], y[i], s=1, color='blue')
+
+        for patch in patches:
+            plt.gca().add_patch(patch)
+
+        plt.xlim(0, 2)
+        plt.ylim(0, 2)
+        plt.xlabel('Radians')
+        plt.ylabel('Radians')
+        plt.title('Ratio of Cosine Angles on Torus')
+        plt.grid()
+
+        # Save the plot to a BytesIO object
+        buf = BytesIO()
+        plt.savefig(buf, format='png')
+        buf.seek(0)
+
+        # Encode the image to base64
+        img_str = b64encode(buf.read()).decode('utf-8')
+
+        # Insert the image into the HTML
+        img_tag = f'<img src="data:image/png;base64,{img_str}"/>'
+        graph_div.innerHTML = img_tag
+
+    except Exception as e:
+        # If there's an error, display it in the output section
+        graph_div.innerHTML = f"Error: {str(e)}"
+        print(f"Error in generate_graph: {str(e)}")

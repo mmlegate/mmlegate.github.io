@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,16 +11,16 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin" />
+    <meta http-equiv="Cross-Origin-Embedder-Policy" content="require-corp" />
+
+
     <link rel="stylesheet" href="projects.css">
 
     <!-- PyScript CSS -->
-    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 
-    <py-config type="toml">
-		packages = ["numpy", "matplotlib", "mpld3"]
-    </py-config>
-    
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+
     <title>Cosine Sign Correlation</title>
 </head>
 
@@ -165,12 +165,182 @@
 
                 <label for="input2">Enter another number:</label>
                 <input type="number" id="input2" value="3" min="1">
-
-                <button id="generateButton" py-click="generate_graph()">Generate Graph</button>
+                
+                
+                <button id="generateButton" onclick="generateGraph()">Generate Graph</button>
             </div>
             <div id="lineplot"></div>
             </div>
-            <py-script src="./main.py" output="lineplot"></py-script>
+
+                <!-- Pyodide Initialization Script -->
+    <script>
+        async function initPyodide() {
+            // Load Pyodide
+            const pyodide = await loadPyodide();
+            console.log("Pyodide is ready!");
+
+            // Install necessary packages
+            await pyodide.loadPackage("matplotlib");
+            await pyodide.loadPackage("numpy");
+
+            console.log("Matplotlib and Numpy loaded!");
+            return pyodide;
+        }
+
+        async function generateGraph() {
+            const pyodide = await initPyodide();
+
+            const num1 = parseInt(document.getElementById("input1").value);
+            const num2 = parseInt(document.getElementById("input2").value);
+
+            // Embed Python code directly here
+            const pythonCode = `
+import matplotlib.pyplot as plt
+import numpy as np
+import math
+import matplotlib.patches as mpatches
+from base64 import b64encode
+from io import BytesIO
+
+def find_sign_change(coeff=1):
+    unit = 1 / (2 * coeff)
+    important_x = [0]
+    for i in range(0, 2 * coeff):
+        important_x.append(unit + 2 * unit * i)
+    important_x.append(2)
+    return np.array(important_x)
+
+def get_patches(coeffs=[1]):
+    patches = []
+
+    important_min_x = find_sign_change(min(coeffs))
+    important_max_x = find_sign_change(max(coeffs))
+
+    for i in range(0, len(important_min_x), 2):
+        for j in range(0, len(important_max_x), 2):
+            vert = [important_min_x[i], important_max_x[j]]
+            width = important_min_x[i+1] - important_min_x[i]
+            height = important_max_x[j+1] - important_max_x[j]
+            rect = mpatches.Rectangle(vert, width, height, alpha=0.1, facecolor="blue")
+            patches.append(rect)
+
+    for i in range(1, len(important_min_x)-1, 2):
+        for j in range(1, len(important_max_x)-1, 2):
+            vert = [important_min_x[i], important_max_x[j]]
+            width = important_min_x[i+1] - important_min_x[i]
+            height = important_max_x[j+1] - important_max_x[j]
+            rect = mpatches.Rectangle(vert, width, height, alpha=0.1, facecolor="blue")
+            patches.append(rect)
+
+    return patches
+
+def yoverload(x_line, y_line, max_length=20):
+
+    if len(y_line) > max_length:
+        return x_line, y_line
+
+    y = y_line[-1]
+
+    index = len(y)
+    for i in range(len(y)):
+        if y[i] > 2:
+            index = i
+            break
+
+
+    for i in range(math.ceil(1000/index)):
+
+        y = np.split(y, [index])
+
+        if len(y[-1]) > 0:
+            for j in range(len(y[-1])):
+                y[-1][j] = y[-1][j] - 2
+            for j in range(len(y[-1])):
+                if y[-1][-1] <= 2:
+                    index += len(y[-1])
+                    break
+                if y[-1][j] > 2:
+                    index += j
+                    break
+            y = np.concatenate(y)
+
+        else:
+            break
+
+    y = np.concatenate(y)
+
+    y_line[-1] = y
+
+    if y[-1] < 2:
+        return xoverload(x_line, y_line)
+
+    return x_line, y_line
+
+def xoverload(x_line, y_line):
+
+    coeffs = [${num1}, ${num2}]
+
+    slope = max(coeffs)/min(coeffs)
+
+    right_endpoint =y_line[-1][-1]
+
+    y_appendage = slope * np.linspace(0, 2, 1000) + right_endpoint
+
+    x = np.append(x_line, [np.linspace(0, 2, 1000)], axis=0)
+    y = np.append(y_line, [y_appendage], axis=0)
+
+    return yoverload(x, y)
+
+def generate_graph():
+
+    try:
+        coeffs = [${num1}, ${num2}]
+
+        slope = max(coeffs) / min(coeffs)
+
+        x_0 = np.array([np.linspace(0, 2, 1000)])
+        y_0 = np.array([slope * np.linspace(0, 2, 1000)])
+
+        x, y = yoverload(x_0, y_0, 20)
+        patches = get_patches()
+
+        fig = plt.figure()
+        for i in range(len(y)):
+            plt.scatter(x[i], y[i], s=1, color='blue')
+
+        for patch in patches:
+            plt.gca().add_patch(patch)
+
+        plt.xlim(0, 2)
+        plt.ylim(0, 2)
+        plt.xlabel('Radians')
+        plt.ylabel('Radians')
+        plt.title('Ratio of Cosine Angles on Torus')
+        plt.grid()
+
+        buf = BytesIO()
+        plt.savefig(buf, format='png')
+        buf.seek(0)
+
+        img_str = b64encode(buf.read()).decode('utf-8')
+        return img_str
+
+    except Exception as e:
+        print(f"Error in generate_graph: {str(e)}")
+            `;
+
+            // Execute the Python code and get the base64 image string
+            const imgBase64 = await pyodide.runPythonAsync(pythonCode + "\ngenerate_graph()");
+
+            // Create image tag and set base64 encoded image
+            const imgTag = `<img src="data:image/png;base64,${imgBase64}"/>`;
+
+            // Insert the image into the HTML
+            const graphDiv = document.getElementById("lineplot");
+            graphDiv.innerHTML = imgTag;
+        }
+    </script>
+            
             <p> For higher dimensions, we find the following sequences of coefficients are most decoupled:</p>
             <div class="comparison">
                 <div class="column">
