@@ -440,6 +440,33 @@ nav .right a span {
         height: 300px;
     }
 
+    .skills-section .text .education {
+        display: flex;
+        flex-direction: column;
+        padding-left: 40px;
+        gap: 0px;
+        margin-left: 20%;
+    }
+
+    .skills-section .tab-wrap label {
+        height: 130px;
+        padding-right: 50px;
+        overflow: hidden;
+        writing-mode: vertical-rl;
+        text-orientation: sideways;
+    }
+
+    .skills-section .tab-wrap .tab__content {
+        opacity: 0;
+        position: absolute;
+        top: 127px;
+        padding: 20px 20px;
+    }
+
+    .skills-section .tab-wrap .tab__content .job {
+        flex-direction: column;
+        gap: 5px;
+    }
     .work-section .projects {
         flex-direction: column;
     }

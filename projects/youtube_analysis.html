@@ -43,9 +43,9 @@
         <!-- INTRODUCTION -->
         <section class="intro-section">
             <div class="text"> <h2>YouTube Comment Analysis with ABSA</h2>
-                <p>Description
+                <p>Social media platforms allow for vast interaction with content, freeing people to share their (optionally) anonymous opinions. However, most social media platforms do not inherently allow deep sentiment analysis on posts, such that influencers rarely have a complete understanding of how their content is received by the public.
                 <br><br>
-                Work in progress</p>
+                To provide better insight on viewer interaction on social media, I initiated this machine learning project with my influencer colleague Jade Darmawangsa. The platform of focus is YouTube, with more than 2.7 billion monthly active users. YouTube is also the most efficient for data extraction, given the public YouTube API available on Google Cloud.</p>
                 <div class="links">
                     <a href="#tools">
                         <i class="fa-solid fa-tools"></i>
@@ -74,23 +74,23 @@
     
                 <!-- active tab on page load gets checked attribute -->
                 <input type="radio" id="tab1" name="tabGroup1" class="tab" checked>
-                <label for="tab1"><img src="/../images/python_logo.webp" alt="Python logo"></label>
+                <label for="tab1" class="gc"><img src="/../images/google_cloud_logo.webp" alt="Google Cloud logo"></label>
             
                 <input type="radio" id="tab2" name="tabGroup1" class="tab">
                 <label for="tab2"><img src="/../images/pytorch_logo.webp" alt="PyTorch logo"></label>
             
                 <input type="radio" id="tab3" name="tabGroup1" class="tab">
-                <label for="tab3"><img src="/../images/colab_logo.webp" alt="Google Colab logo"></label>
+                <label for="tab3"><img src="/../images/powerbi_logo.webp" alt="Power BI logo"></label>
             
                 <div class="tab__content">
-                    <h4>Python</h4>
-                    <i>Python is a versatile programming language, widely used in web development, data science, AI, and automation, supported by a rich ecosystem of libraries and frameworks.</i>
+                    <h4>Google Cloud Platform</h4>
+                    <i>Google Cloud Platform (GCP) is a suite of cloud computing services that provides infrastructure, data analytics, and machine learning solutions for building, deploying, and scaling applications.</i>
                     <br>
                     <br>
                     <ul>
-                        <li>The first task was to obtain the data required from my shop, which unfortunately isn't easily accessed through Depop's features (e.g. Seller Stats). I used Python, specifically the selenium library, to scrape various information that I needed from each item.</li>
-                        <li>Data acquired includes: item image, description, brand, size, price listed. </li>
-                        <li>I do not condone further scraping of Depop, as this is against their terms of service, but we prevail in the name of science.</li>
+                        <li>This API is a feature of GCP, thus I started by initiating a GCP project, enabling the API, and then generating an API key for said project.</li>
+                        <li>The format for each API call is rather generic; or what you would expect. I inspected the HTML of Jade's channel to find her channel ID, which will be the basis for the API call.</li>
+                        <li>I first extracted the video IDs on her channel, then loop through each video to extract all the corresponding comments.</li>
                     </ul>
                 </div>
             
@@ -100,21 +100,22 @@
                     <br>
                     <br>
                     <ul>
-                        <li>Pytorch was used to actually construct the neural network used to output a predicted price. I started with a simple fully connected network, however this performed very poorly. My current neural network has convolutional layers for images, as well as layers from the BERT model for descriptions. Further modifications to improve accuracy are in the works. </li>
-                        <li>Data preparation involved conversion of the item image into an RGB matrix, tokenizing the item description, and one-hot-encoding the size, brand, and price listed.</li>
-                        <li>Using the Mean Absolute Percentage Error (MAPE) standard, the simple model is currently performing with 71% error and the CNN-BERT model with 41% error. My shop only contains about 500 sales, so as time goes on I should be able improve its accuracy with more sales and modifications.</li>
+                        <li>There are two machine learning steps for this project with ABSA: detecting aspects on a video-by-video basis, then determining sentiment with regard to each aspect paired with it's video.</li>
+                        <li>I first used BERTopic, a pre-exisitng topic modeling technique.</li>
+                        <li>I then tweaked DeBERTa, a pre-trained transformer-based neural language model. DeBERTa has built-in functions for evaluating sentiment for text.</li>
                     </ul>
                 </div>
             
                 <div class="tab__content">
-                    <h4>Google Colab</h4>
-                    <i>Google Colab is a cloud-based Jupyter notebook environment that allows you to write, execute, and share code, while also using free GPU and TPU resources for machine learning and data analysis tasks.</i>
+                    <h4>Power BI</h4>
+                    <i>Power BI is a powerful business analytics tool by Microsoft that allows users to visualize and share insights from their data through interactive dashboards and reports.</i>
+        
                     <br>
                     <br>
                     <ul>
-                        <li>Colab was essential for a more user friendly display of the neural network, and it was leveraged for its integration with Drive.</li>
-                        <li>Scraping Depop's website should be minimized, thus Drive was needed to save each item image for easy access.</li>
-                        <li>Colab was also helpful for creating visualizations of model performance, note that in the images displayed below there are certain factors that may hinder performance: the changing background for my modeling of items, the inconsistent angle of the camera, etc.</li>
+                        <li>After processing the data, I obtained aspects paired with positivity scores. The aspects actually overlapp across videos, so we can further determine how varying a video will modify an aspect's reception.</li>
+                        <li>Power BI is handy for interpreting this data, presenting it in a user-friendly format for my client Jade.</li>
+                        <li>With Power BI's Python integration, I forsee deploying this model on Google Cloud for Jade's private access. Power BI would automatically update the report with data from new videos/comments as time passes.</li>
                     </ul>
                 </div>
             
@@ -123,43 +124,23 @@
     
         <!-- RESULT -->
         <section id="result" class="result-section"> <h2>Result</h2>
-            <div>
-                <img src="/../images/depop_nn_data.webp" alt="Example item container on Depop's website">
-                <br>
-                <br>
-                <p>Above is an example of an item container that was scraped for information. Note that items contain more images in their individual posts, but for now the NN only has access to the 'top' image, the first image that users will see when scrolling through Depop.</p>
-            </div>
-            <p>Below is the testing results on the last batch:</p>
-            <div>
-                <img src="/../images/depop_nn_performance.webp" alt="Comparison of neural network output and source image">
-            </div>
-            <p>Depop only contains a limited amount of brand tags for each item, so if an item's brand is unlisted, it falls into the 'Other' category. Unfortunately, I believe this leads to a gap of necessary information for the NN which attributes the large discrepancy on several items. Above, the white dress falls under the 'Other' category, which is the worst prediction in the test set. 
-            <br>
-            <br>
-            We see below that there is some overfitting, and the validation accuracy is rather unstable over the course of the training.
-            <br>
-            <br>
-            <img src="/../images/depop_performance.webp" alt="Plot of training loss and validationa accuracy">
-            <br>
-            <br>
-            Additionally, I generated a report for my shop in Power BI to keep track of profit and other metrics. I will keep the report updated as I implement my neural network for improvement of sales. </p>
-            <iframe title="Sales Report with Predictions" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiMjY0ZGJiNTEtNjNkZC00MDYwLWE5YjYtYzRmZTczNzExNmIxIiwidCI6ImY2YjZkZDViLWYwMmYtNDQxYS05OWEwLTE2MmFjNTA2MGJkMiIsImMiOjZ9&pageName=adcf18bf48d7337299b5" frameborder="0" allowFullScreen="true"></iframe>
+    
         </section>
     
         <!-- CODE -->
         <section id="code" class="code-section">
             <div class="text"> <h2> Source Code:</h2>
-                <a href="https://github.com/mmlegate/mmlegate.github.io/tree/main/projects"><pre><code class="python">class DepopPriceCNN(nn.Module):
-                    def __init__(self):
-                        super(DepopPriceCNN, self).__init__()
-                        
-                        # CNN for image input (assuming 3-channel RGB input, 128x128 images)
-                        self.conv1 = nn.Sequential(
-                            nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, stride=1, padding=1),
-                            nn.BatchNorm2d(16),
-                            nn.ReLU(),
-                            nn.MaxPool2d(kernel_size=2, stride=2)
-                        )</code></pre></a>
+                <a href="https://github.com/mmlegate/mmlegate.github.io/tree/main/projects"><pre><code class="python"># Load DeBERTa ABSA model
+MODEL_NAME = "yangheng/deberta-v3-base-absa-v1.1"
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)
+                    
+def infer_aspect_sentiment(comment, aspect):
+    input_text = f"{aspect} [SEP] {comment}"  # Aspect before comment
+    inputs = tokenizer(input_text, return_tensors="pt", truncation=True, padding=True, max_length=512)
+                    
+    with torch.no_grad():
+    logits = model(**inputs).logits</code></pre></a>
     
             </div> 
             <div class="headshot">

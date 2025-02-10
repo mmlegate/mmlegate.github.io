@@ -152,6 +152,10 @@ nav .right a span {
     }
 }
 
+.tools-section .tab-wrap .gc {
+    padding: 20px 15px;
+}
+
 .tools-section .tab-wrap img {
     height: 30px;
 }
@@ -223,6 +227,18 @@ nav .right a span {
 
 .result-section img {
     width: 100%;
+}
+
+.result-section .pairplot {
+    max-width: 650px;
+    height: auto;
+    align-self: center;
+}
+
+.result-section .long {
+    max-width: 700px;
+    height: auto;
+    align-self: center;
 }
 
 .result-section iframe {
@@ -336,6 +352,7 @@ nav .right a span {
     flex: 4;
     color: var(--background-color);
     position: relative;
+    overflow: hidden;
 }
 
 .code-section .text h2 {
